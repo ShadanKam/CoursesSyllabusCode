@@ -1,0 +1,281 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 //Shadan Khan, 1876267, C22, shadoon999@yahoo.com/skhan.stu@uj.edu.sa\
+import java.util.Scanner;\
+public class Phase2_1876267_C22 \{\
+\
+    public static void main(String[] args) \{\
+        final int SIZE = 5;\
+        String[] fourthSemesterCourses = \{"ISLM101", "SCHP231", "SCMT221", "CCCS222", "CCCS220"\};\
+        String[] prerquisite = \{"", "PHY101", "SCMT231", "MATH110", "CCCS210"\};\
+        int ch, days = 0, counter = 0, c = 0;\
+        String[] registeredCourses = new String[SIZE];\
+        String[] startTime = new String[SIZE];\
+        int[] dayy = new int[SIZE];\
+        String choice22 = "", answer = "", time;\
+        double time1;\
+\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("|---------         Fall 2019 Schedule Program           ---------|");\
+        System.out.println("|----------------------------------------------------------------|");\
+        Scanner sc = new Scanner(System.in);\
+        System.out.print(" > Enter your name: ");\
+        String name = sc.nextLine();\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("|---------         Fall 2019 Schedule Program           ---------|");\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("  Welcome " + name.toUpperCase() + " to your class schedule program");\
+        System.out.println("|----------------------------------------------------------------|");\
+\
+        do \{\
+            getMenu();\
+            char choice = sc.next().charAt(0);\
+            ch = inputAndCheck(choice);\
+            if (ch == 'A') \{\
+\
+                Scanner input1 = new Scanner(System.in);\
+                do \{\
+                    do \{\
+                        c = getSecondM();\
+\
+                        switch (c) \{\
+                            case 1:\
+                                choice22 = fourthSemesterCourses[0];\
+                                break;\
+                            case 2:\
+                                choice22 = fourthSemesterCourses[1];\
+                                break;\
+                            case 3:\
+                                choice22 = fourthSemesterCourses[2];\
+                                break;\
+                            case 4:\
+                                choice22 = fourthSemesterCourses[3];\
+                                break;\
+                            case 5:\
+                                choice22 = fourthSemesterCourses[4];\
+                                break;\
+                            case 6:\
+                                choice22 = "";\
+                                break;\
+                            default:\
+                                System.out.println("\\n > Invalid selection! Please try again");\
+                                continue;\
+                        \}\
+                        if (findCourse(registeredCourses, choice22) == true) \{\
+                            System.out.println("You cannot add the course because "\
+                                    + choice22 + " had been already added.");\
+                            getSecondM();\
+                        \}if (c>6)\{\
+                            System.out.println("\\n Invalid selection! Please try again");\
+                            break;\
+                        \}\
+                    \} while (findCourse(registeredCourses, choice22) == true || c>6) ;\
+                    \
+                    switch (c) \{\
+                        case 1:\
+                            break;\
+                        case 2:\
+                            System.out.print("Did you finish the prerequiest course \\"" + prerquisite[1] + "\\" (yes/no) ?");\
+                            answer = input1.next();\
+                            break;\
+                        case 3:\
+                            System.out.print("Did you finish the prerequiest course \\"" + prerquisite[2] + "\\" (yes/no) ?");\
+                            answer = input1.next();\
+                            break;\
+                        case 4:\
+                            System.out.print("Did you finish the prerequiest course \\"" + prerquisite[3] + "\\" (yes/no) ?");\
+                            answer = input1.next();\
+                            break;\
+                        case 5:\
+                            System.out.print("Did you finish the prerequiest course \\"" + prerquisite[4] + "\\" (yes/no) ?");\
+                            answer = input1.next();\
+                            break;\
+                        case 6:\
+                            break;\
+\
+                    \}\
+                    if (c>6)\{\
+                            System.out.println("\\n Invalid selection! Please try again");\
+                            continue;\
+                    \}\
+                    if (c == 1 || answer.equalsIgnoreCase("Yes") && c != 6 && c < 6) \{\
+\
+                        System.out.print("Enter the start time :");\
+                        time = input1.next();\
+                        time1 = Double.parseDouble(time);\
+\
+                        while (time.length() != 5 || time.charAt(2) != '.') \{\
+                            if (time1 < 08.00 || time1 > 23.00) \{\
+                                time1 = Double.parseDouble(time);\
+                            \}\
+                            System.out.println(" > Invalid time format! Please try again");\
+                            System.out.print("Enter the start time :");\
+                            time = input1.next();\
+                        \}\
+\
+                        do \{\
+                            System.out.print("Enter the class days (1 For UTR, 2 for MW): ");\
+                            days = sc.nextInt();\
+                            switch (days) \{\
+                                case 1:\
+                                    break;\
+                                case 2:\
+                                    break;\
+                                default:\
+                                    System.out.println(" > Invalid selection! Please try again.");\
+\
+                            \}\
+                        \} while (days != 1 && days != 2);\
+\
+                        System.out.println("The course " + choice22 + " has been added");\
+\
+                        registeredCourses[counter] = choice22;\
+                        startTime[counter] = time;\
+                        dayy[counter] = days;\
+                        counter++;\
+\
+                        /*create an array with U numbers (represents the amount of courses\
+                         the user inputs, we increment everytime the user inputs a new course*/\
+                    \}\
+                    if (answer.equalsIgnoreCase("No") && c != 6) \{\
+                        System.out.println("You will not be able to pass the course " + choice22.toUpperCase() + " since the"\
+                                + " prerequisite \\nis not met.");\
+                    \}\
+                    if (c == 6) \{\
+                        break;\
+                    \}\
+                \} while (c != 6);\
+\
+            \} else if (ch == 'G') \{\
+                printAllCourses();\
+            \} else if (ch == 'P') \{\
+                displayAddedCourses(registeredCourses, startTime, dayy, counter);\
+            \} else if (ch == 'F') \{\
+                System.out.print("Enter the course code: ");\
+                String course = sc.next();\
+                boolean d = findCourse(registeredCourses, course);\
+                if (d == true) \{\
+                    System.out.println("The course is listed in your schedule");\
+                \} else \{\
+                    System.out.println("The course is NOT listed in your schedule");\
+                \}\
+\
+            \} else if (ch == 'E') \{\
+                System.out.println(">     Exiting the program.....");\
+                System.out.println(">     Goodbye!");\
+                System.exit(0);\
+            \} else \{\
+                System.out.println("\\n > Invalid selection! Please try again");\
+\
+            \}\
+\
+        \} while (ch != 'E');\
+\
+    \}\
+\
+    public static void getMenu() \{\
+\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("|---------         Fall 2019 Schedule Program           ---------|");\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("|   A/a: Enter A or a for Adding a Course                        |");\
+        System.out.println("|   G/g: Enter G or g for Getting the courses details            |");\
+        System.out.println("|   P/p: Enter P or p for Printing the added courses             |");\
+        System.out.println("|   F/f: Enter F or f for Finding a course                       |");\
+        System.out.println("|   E/e: Enter E or e for Exiting the Program                    |");\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.print("> Please enter your choice: ");\
+\
+    \}\
+\
+    public static int getSecondM() \{\
+\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("|---------         Fall 2019 Schedule Program           ---------|");\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("|                CS/AI Department - Fourth Semester              |");\
+        System.out.println("|   1.ISLM101                                                    |");\
+        System.out.println("|   2.SCHP231                                                    |");\
+        System.out.println("|   3.SCMT221                                                    |");\
+        System.out.println("|   4.CCCS222                                                    |");\
+        System.out.println("|   5.CCCS220                                                    |");\
+        System.out.println("|   6.Return to main menu                                        |");\
+        System.out.println("|----------------------------------------------------------------|");\
+\
+        System.out.print("> Please enter your choice: ");\
+\
+        Scanner input = new Scanner(System.in);\
+        int choice2 = input.nextInt();\
+        return choice2;\
+    \}\
+\
+    public static char inputAndCheck(char c) \{\
+        if (c == 'A' || c == 'a') \{\
+            c = 'A';\
+        \} else if (c == 'G' || c == 'g') \{\
+            c = 'G';\
+        \} else if (c == 'P' || c == 'p') \{\
+            c = 'P';\
+        \} else if (c == 'F' || c == 'f') \{\
+            c = 'F';\
+        \} else if (c == 'E' || c == 'e') \{\
+            c = 'E';\
+        \} else \{\
+            c = c;\
+\
+        \}\
+\
+        return c;\
+    \}\
+\
+    public static void printAllCourses() \{\
+\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("|---------              Courses Information             ---------|");\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("|   Code          Name                 Credit           Pre      |");\
+        System.out.println("|----------------------------------------------------------------|");\
+        System.out.println("  ISLM101         Islamic 1              3              --");\
+        System.out.println("  SCHP231         Physics II             4              PHY101");\
+        System.out.println("  SCMT221         Linear Algebra         3              SCMT231");\
+        System.out.println("  CCCS222         Discrete Mathematics   3              MATH110");\
+        System.out.println("  CCCS220         OO Programming 1       3              CCCS210 ");\
+        System.out.println("|----------------------------------------------------------------|");\
+\
+    \}\
+\
+    public static boolean findCourse(String courses[], String course) \{\
+        boolean p = false;\
+        for (int i = 0; i < courses.length; i++) \{\
+            if (course.equalsIgnoreCase(courses[i])) \{\
+                p = true;\
+            \}\
+        \}\
+        return p;\
+    \}\
+\
+    public static void displayAddedCourses(String courses[], String time[], int day[], int counter) \{\
+        System.out.println("| Code                     Time                    Days          |");\
+        System.out.println("|----------------------------------------------------------------|");\
+\
+        for (int i = 0; i < counter; i++) \{\
+            System.out.print("> " + courses[i]);\
+\
+            if (day[i] == 1) \{\
+                System.out.printf("%20.2f:%.2f", Double.parseDouble(time[i]), Double.parseDouble(time[i]) + 00.50);\
+                System.out.printf("%20s", "UTR");\
+            \} else \{\
+                System.out.printf("%20.2f:%.2f", Double.parseDouble(time[i]), Double.parseDouble(time[i]) + 01.20);\
+                System.out.printf("%20s", "MW");\
+            \}\
+            System.out.println("\\n|----------------------------------------------------------------|");\
+        \}\
+    \}\
+\
+\}\
+}
